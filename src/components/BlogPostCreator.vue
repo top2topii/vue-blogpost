@@ -9,12 +9,13 @@
         <error v-if="!category && formEntered">Post must have a category</error>
         <Select
           placeholder="Select a category"
-          v-model="category">
-          <!-- v-if="postCategories.length > 0" -->
+          v-model="category"
+          v-if="postCategories.length">
           <Option
-            v-for="cat in testarr"
+            v-for="cat in postCategories"
             :key="cat.id"
             :value="cat.id">{{ cat.label }}
+            <!-- :label="cat.label">{{ cat.label }} -->
           </Option>
         </Select>
       </div>
