@@ -9,12 +9,11 @@
         <error v-if="!category && formEntered">Post must have a category</error>
         <Select
           placeholder="Select a category"
-          v-model="category"
-          v-if="postCategories.length"
-        >
+          v-model="category">
+          <!-- v-if="postCategories.length > 0" -->
           <Option
-            v-for="(cat, index) in postCategories"
-            :key="index"
+            v-for="cat in testarr"
+            :key="cat.id"
             :value="cat.id">{{ cat.label }}
           </Option>
         </Select>
@@ -55,33 +54,36 @@ export default {
     quillEditor,
     Error
   },
-  data: () => ({
-    title: '',
-    category: '',
-    image_url: '',
-    content: '',
-    editorOptions: {
-      debug: 'info',
-      placeholder: 'Type your post...',
-      readOnly: true,
-      theme: 'snow'
-    },
-    delta: undefined,
-    postCategories: [
-      {
-        id:1,
-        label: 'NodeJS',
-        img: 'https://pluralsight.imgix.net/paths/path-icons/nodejs-601628d09d.png?w=200'
+  data() {
+    return {
+      testarr: [{ id:1, label:'label1' }, { id:2, label:'label2' }],
+      title: '',
+      category: '',
+      image_url: '',
+      content: '',
+      editorOptions: {
+        debug: 'info',
+        placeholder: 'Type your post...',
+        readOnly: true,
+        theme: 'snow'
       },
-      {
-        id:2,
-        label: 'Javascript',
-        img: 'https://cdn.auth0.com/blog/js-fatigue/JSLogo.png'
-      }
-    ],
-    showImageModel: false,
-    formEntered: false
-  }),
+      delta: undefined,
+      postCategories: [
+        {
+          id:1,
+          label: 'NodeJS',
+          img: 'https://pluralsight.imgix.net/paths/path-icons/nodejs-601628d09d.png?w=200'
+        },
+        {
+          id:2,
+          label: 'Javascript',
+          img: 'https://cdn.auth0.com/blog/js-fatigue/JSLogo.png'
+        }
+      ],
+      showImageModel: false,
+      formEntered: false
+    }
+  },
   watch: {
     content () {
       this.delta = this.$refs.myQuillEditor.quill.getContents()
@@ -148,4 +150,5 @@ export default {
 	color: red!important;
 	border: 1px solid red!important;
 }
+
 </style>

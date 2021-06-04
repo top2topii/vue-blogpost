@@ -9,8 +9,7 @@ export default {
 </script>
 
 <style>
-    .err-text {
-        colors: red;
-    }
-
+  .err-text {
+      color: red;
+  }
 </style>
