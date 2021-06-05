@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-post-creator">
+  <div class="blog-post-creator rteditor">
     <div class="post-inputs">
       <div class="title-input">
         <error v-if="!title && formEntered">Title must bew more then 10 chracters</error>
@@ -44,6 +44,7 @@
 import 'quill/dist/quill.snow.css'
 import { quillEditor } from 'vue-quill-editor'
 import { Button, Input, Select } from 'iview'
+import { mapGetters } from 'vuex'
 import Error from './Error.vue'
 
 export default {
@@ -103,6 +104,9 @@ export default {
       // TODO
 			this.formEntered = true
     }
+  },
+  computed: {
+    ...mapGetters(['delta'])
   }
 }
 </script>
@@ -150,6 +154,11 @@ export default {
 .btn-delete:hover {
 	color: red!important;
 	border: 1px solid red!important;
+}
+
+.rteditor {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 </style>
